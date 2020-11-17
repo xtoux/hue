@@ -133,19 +133,21 @@ export default class AceLocationHandler implements Disposable {
   }
 
   private updateAvailableDatabases() {
-    dataCatalog
-      .getChildren({
-        connector: this.executor.connector(),
-        namespace: this.executor.namespace(),
-        compute: this.executor.compute(),
-        path: <string[]>[]
-      })
-      .then(children => {
-        this.availableDatabases.clear();
-        children.forEach((dbEntry: DataCatalogEntry) => {
-          this.availableDatabases.add(dbEntry.name.toLowerCase());
-        });
-      });
+    this.availableDatabases.clear();
+    this.availableDatabases.add('default');
+    // dataCatalog
+    //   .getChildren({
+    //     connector: this.executor.connector(),
+    //     namespace: this.executor.namespace(),
+    //     compute: this.executor.compute(),
+    //     path: <string[]>[]
+    //   })
+    //   .then(children => {
+    //     this.availableDatabases.clear();
+    //     children.forEach((dbEntry: DataCatalogEntry) => {
+    //       this.availableDatabases.add(dbEntry.name.toLowerCase());
+    //     });
+    //   });
   }
 
   private isSqlDialect(): boolean {

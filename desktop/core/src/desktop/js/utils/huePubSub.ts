@@ -119,7 +119,7 @@ const clearAppSubscribers = (app?: string): void => {
   }
 };
 
-export default {
+const huePubSub = {
   clearAppSubscribers,
   getTopics,
   pauseAppSubscribers,
@@ -129,3 +129,7 @@ export default {
   subscribe,
   subscribeOnce
 };
+
+(<any>window).huePubSub = huePubSub;
+
+export default huePubSub;

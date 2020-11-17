@@ -103,16 +103,17 @@
       editor.session.setMode(getAceMode(this.executor.connector().dialect));
 
       editor.setOptions({
-        fontSize: apiHelper.getFromTotalStorage(
-          'hue.ace',
-          'fontSize',
-          navigator.platform && navigator.platform.toLowerCase().indexOf('linux') > -1
-            ? '14px'
-            : '12px'
-        )
+        fontSize: '14px'
+        // fontSize: apiHelper.getFromTotalStorage(
+        //   'hue.ace',
+        //   'fontSize',
+        //   navigator.platform && navigator.platform.toLowerCase().indexOf('linux') > -1
+        //     ? '14px'
+        //     : '12px'
+        // )
       });
 
-      let darkThemeEnabled = apiHelper.getFromTotalStorage('ace', 'dark.theme.enabled', false);
+      let darkThemeEnabled = false; // apiHelper.getFromTotalStorage('ace', 'dark.theme.enabled', false);
 
       editor.setTheme(darkThemeEnabled ? 'ace/theme/hue_dark' : 'ace/theme/hue');
 
@@ -195,11 +196,12 @@
         editor.customMenuOptions.getClearIgnoredSyntaxChecks = () => false;
       }
 
-      const enableBasicAutocompletion = apiHelper.getFromTotalStorage(
-        'hue.ace',
-        'enableBasicAutocompletion',
-        true
-      );
+      const enableBasicAutocompletion = true;
+      // apiHelper.getFromTotalStorage(
+      //   'hue.ace',
+      //   'enableBasicAutocompletion',
+      //   true
+      // );
 
       const editorOptions: Ace.Options = {
         enableBasicAutocompletion,
@@ -216,11 +218,12 @@
       };
 
       if (enableBasicAutocompletion) {
-        editorOptions.enableLiveAutocompletion = apiHelper.getFromTotalStorage(
-          'hue.ace',
-          'enableLiveAutocompletion',
-          true
-        );
+        editorOptions.enableLiveAutocompletion = true;
+        // apiHelper.getFromTotalStorage(
+        //   'hue.ace',
+        //   'enableLiveAutocompletion',
+        //   true
+        // );
       }
 
       editor.setOptions(editorOptions);
@@ -308,8 +311,8 @@
     }
   }
 
-  export const COMPONENT_NAME = 'ace-editor';
-  wrap(COMPONENT_NAME, AceEditor);
+  // export const COMPONENT_NAME = 'ace-editor';
+  // wrap(COMPONENT_NAME, AceEditor);
 </script>
 
 <style lang="scss" scoped>

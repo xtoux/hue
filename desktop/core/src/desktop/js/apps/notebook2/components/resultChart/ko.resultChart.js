@@ -35,7 +35,7 @@ import { attachTracker } from 'apps/notebook2/components/executableStateHandler'
 
 export const RESULT_CHART_COMPONENT = 'result-chart';
 
-const TYPES = window.HUE_CHARTS.TYPES;
+const TYPES = (window.HUE_CHARTS || {}).TYPES || {};
 
 export const CHART_MAP_TYPE = {
   HEAT: 'heat',

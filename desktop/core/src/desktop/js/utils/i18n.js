@@ -15,17 +15,7 @@
 // limitations under the License.
 
 const I18n = (identifier, ...replacements) => {
-  if (window.DJANGO_DEBUG_MODE && !HUE_I18n[identifier]) {
-    if (!window.missing_I18n) {
-      window.missing_I18n = [];
-    }
-    window.missing_I18n.push(`'${identifier}': '\${ _('${identifier}') }',`);
-  }
-  let result = HUE_I18n[identifier] || identifier;
-  replacements.forEach(replacement => {
-    result = result.replace('%s', replacement);
-  });
-  return result;
+  return identifier;
 };
 
 export default I18n;

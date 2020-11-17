@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import impalaAutocompleteParser from "parse/sql/impala/impalaAutocompleteParser";
+
 /* eslint-disable */
 /**
  * AUTOCOMPLETE_MODULES and SYNTAX_MODULES are generated, do not edit manually, see tools/jison/generateParsers.js
@@ -67,7 +69,8 @@ class SqlParserRepository {
    * @return {Promise<*>}
    */
   async getAutocompleter(dialect) {
-    return this.getParser(dialect, 'Autocomplete');
+    return impalaAutocompleteParser;
+    //return this.getParser(dialect, 'Autocomplete');
   }
 
   async getSyntaxParser(dialect) {

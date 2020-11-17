@@ -583,4 +583,222 @@
   }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+  @import '../../../../../components/styles/colors';
+  @import '../../../../../components/styles/mixins';
+
+  .hue-ace-autocompleter {
+    @include display-flex;
+    position: fixed;
+
+    z-index: 999;
+    max-height: 250px;
+    align-items: flex-start;
+  }
+
+  .autocompleter-suggestions,
+  .autocompleter-details {
+    @include display-flex;
+    @include flex(0 0 300px);
+    @include flex-direction(column);
+
+    width: 300px;
+    max-height: 250px;
+    overflow: hidden;
+    border: 1px solid $fluid-gray-300;
+    border-radius: 2px;
+    background-color: $fluid-white;
+    @include box-shadow-bottom;
+  }
+
+  .autocompleter-suggestions {
+    z-index: 1002;
+  }
+
+  .autocompleter-details {
+    z-index: 1001;
+    margin-left: 5px;
+  }
+
+  .autocompleter-header {
+    @include flex(0 0 20px);
+
+    position: relative;
+    padding: 5px;
+    background-color: $fluid-gray-050;
+    line-height: 20px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .autocompleter-header-popularity {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 19px;
+    height: 19px;
+  }
+
+  .autocompleter-spinner {
+    position: relative;
+    float: right;
+    width: 15px;
+    margin-top: 1px;
+  }
+
+  .autocompleter-categories {
+    display: inline-block;
+    float: left;
+  }
+
+  .autocompleter-categories > div {
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    padding: 0 5px;
+  }
+
+  .autocompleter-categories > div.active {
+    display: inline-block;
+    border-bottom: 2px solid $hue-primary-color-dark;
+    cursor: default;
+  }
+
+  .autocompleter-entries {
+    max-height: 225px;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .autocompleter-suggestion {
+    height: 19px;
+    clear: both;
+    background-color: $fluid-white;
+    padding: 3px;
+    cursor: pointer;
+    position: relative;
+    font: 12px normal Roboto Mono, Menlo, Monaco, Consolas, "Courier New", monospace;
+    direction: ltr;
+    line-height: 18px;
+  }
+
+  .autocompleter-suggestion:hover {
+    background-color: $fluid-blue-050;
+  }
+
+  .autocompleter-suggestion.selected {
+    background-color: $hue-primary-color-light;
+  }
+
+  .autocompleter-suggestion-value {
+    width: 85%;
+    margin-left: 3px;
+    margin-right: 6px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    b {
+      font-weight: bolder;
+    }
+  }
+
+  .autocompleter-suggestion-meta {
+    position: absolute;
+    background-color: inherit;
+    z-index: 1;
+    right: 0;
+    top: 3px;
+    padding-right: 3px;
+    color: $fluid-gray-700;
+    max-width: 65px;
+
+    @include nowrap-ellipsis;
+  }
+
+  .autocompleter-dot {
+    display: inline-block;
+    margin-top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  .autocompleter-details-contents {
+    max-height: 225px;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  // IE 11 fix to prevent overflow
+  .autocompleter-details-contents-inner {
+    padding: 7px;
+  }
+
+  .autocompleter-details-contents .details-attribute,
+  .autocompleter-details-contents .details-popularity {
+    color: $fluid-gray-700;
+    display: inline-block;
+  }
+
+  .autocompleter-details-contents .details-popularity .progress {
+    display: inline-block;
+    border-radius: 2px;
+    height: 10px;
+    width: 80px;
+  }
+
+  .autocompleter-details-contents .details-popularity .progress .bar {
+    background-color: $hue-primary-color-dark;
+  }
+
+  .autocompleter-details-contents .details-comment,
+  .autocompleter-details-contents .details-description {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: $fluid-gray-700;
+  }
+
+  .autocompleter-details-contents .details-header {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 2px 0;
+  }
+
+  .autocompleter-details-contents .details-no-comment {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: $fluid-gray-700;
+    font-style: italic;
+  }
+
+  .autocompleter-details-contents .details-comment * {
+    font-size: 13px !important;
+    line-height: 14px !important;
+    white-space: pre;
+  }
+
+  .autocompleter-details-contents .details-code {
+    background-color: $fluid-gray-050;
+    padding: 3px;
+    color: $fluid-gray-700;
+    font: 12px normal Roboto Mono, Menlo, Monaco, Consolas, "Courier New", monospace;
+    direction: ltr;
+  }
+
+  .fn-details {
+    max-width: 600px;
+    white-space: normal;
+    overflow-y: auto;
+    height: 100%;
+    padding: 8px;
+  }
+
+  .fn-sig {
+    white-space: pre;
+    font-family: monospace;
+  }
+</style>

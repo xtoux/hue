@@ -76,29 +76,29 @@ $hue-panel-border-radius: 3px;
   @include box-shadow($top, $left, 8px, rgba(0, 0, 0, 0.18));
 }
 
-.box-shadow-top {
+@mixin box-shadow-top {
   @include simple-box-shadow(0, -2px);
 }
 
-.box-shadow-right {
+@mixin box-shadow-right {
   @include simple-box-shadow(2px, 0);
 }
 
-.box-shadow-bottom {
+@mixin box-shadow-bottom {
   @include simple-box-shadow(0, 2px);
 }
 
-.box-shadow-left {
+@mixin box-shadow-left {
   @include simple-box-shadow(-2px, 0);
 }
 
-.inset-box-shadow {
+@mixin inset-box-shadow {
   -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125) !important;
   -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125) !important;
   box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125) !important;
 }
 
-.no-box-shadow {
+@mixin no-box-shadow {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;

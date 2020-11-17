@@ -27,7 +27,9 @@ import I18n from 'utils/i18n';
 import huePubSub from 'utils/huePubSub';
 import { clearUdfCache, getCachedUdfCategories, setCachedUdfCategories } from './apiCache';
 import { fetchDescribe, fetchUdfs } from './apiUtils';
-
+import { RESERVED_WORDS as impalaReservedWords } from './impala/reservedKeywords';
+import { UDF_CATEGORIES as impalaUdfCategories } from './impala/udfReference';
+import { SET_OPTIONS as impalaSetOptions } from './impala/setReference';
 export const CLEAR_UDF_CACHE_EVENT = 'hue.clear.udf.cache';
 export const DESCRIBE_UDF_EVENT = 'hue.describe.udf';
 export const UDF_DESCRIBED_EVENT = 'hue.udf.described';
@@ -37,21 +39,21 @@ const GENERIC = 'generic';
 const KEYWORD_REFS: { [attr: string]: () => Promise<{ RESERVED_WORDS?: Set<string> }> } = {
   calcite: async () => import(/* webpackChunkName: "calcite-ref" */ './calcite/reservedKeywords'),
   generic: async () => import(/* webpackChunkName: "generic-ref" */ './generic/reservedKeywords'),
-  hive: async () => import(/* webpackChunkName: "impala-ref" */ './hive/reservedKeywords'),
-  impala: async () => import(/* webpackChunkName: "hive-ref" */ './impala/reservedKeywords'),
+  hive: async () => import(/* webpackChunkName: "hive-ref" */ './hive/reservedKeywords'),
+  impala: async () => ({ RESERVED_WORDS: impalaReservedWords}),
   postgresql: async () =>
     import(/* webpackChunkName: "generic-ref" */ './postgresql/reservedKeywords'),
   presto: async () => import(/* webpackChunkName: "generic-ref" */ './presto/reservedKeywords')
 };
 
 const SET_REFS: { [attr: string]: () => Promise<{ SET_OPTIONS?: SetOptions }> } = {
-  impala: async () => import(/* webpackChunkName: "impala-ref" */ './impala/setReference')
+  impala: async () => ({ SET_OPTIONS: impalaSetOptions })
 };
 
 const UDF_REFS: { [attr: string]: () => Promise<{ UDF_CATEGORIES?: UdfCategory[] }> } = {
   generic: async () => import(/* webpackChunkName: "generic-ref" */ './generic/udfReference'),
   hive: async () => import(/* webpackChunkName: "hive-ref" */ './hive/udfReference'),
-  impala: async () => import(/* webpackChunkName: "impala-ref" */ './impala/udfReference'),
+  impala: async () => ({ UDF_CATEGORIES: impalaUdfCategories}),
   pig: async () => import(/* webpackChunkName: "pig-ref" */ './pig/udfReference')
 };
 
