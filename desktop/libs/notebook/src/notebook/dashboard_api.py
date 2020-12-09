@@ -505,18 +505,17 @@ class SQLDashboardApi(DashboardApi):
       return ''
 
 
-  @classmethod
-  def _get_aggregate_function(cls, facet):
+  def _get_aggregate_function(self, facet):
     fields = []
 
     if facet['aggregate']['function'] == 'median':
-      if cls._supports_median():
+      if self._supports_median():
         facet['aggregate']['function'] = 'MEDIAN'
         fields.append(facet['field'])
-      elif cls._supports_percentile():
+      elif self._supports_percentile():
         facet['aggregate']['function'] = 'PERCENTILE'
         fields.append('%s, 0.5' % facet['field'])
-      elif cls._supports_cume_dist():
+      elif self._supports_cume_dist():
         facet['aggregate']['function'] = 'MIN'
         fields.append(facet['field'])
       else:
@@ -526,9 +525,9 @@ class SQLDashboardApi(DashboardApi):
       facet['backticks'] = self.backticks
       fields.append('distinct %(backticks)s%(field)s%(backticks)s' % facet)
     elif facet['aggregate']['function'] == 'percentile':
-      if cls._supports_percentile():
-        fields.append('%s, %s' % (facet['field'], cls._zero_to_one(float(facet['aggregate']['percentile']))))
-      elif cls._supports_cume_dist():
+      if self._supports_percentile():
+        fields.append('%s, %s' % (facet['field'], self._zero_to_one(float(facet['aggregate']['percentile']))))
+      elif self._supports_cume_dist():
         facet['aggregate']['function'] = 'MIN'
         fields.append(facet['field'])
       else:
